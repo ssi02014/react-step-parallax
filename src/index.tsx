@@ -1,1 +1,3 @@
-export { default as StepParallax } from '@components/StepParallax';
+import StepParallax from '@components/StepParallax';
+
+export default StepParallax;

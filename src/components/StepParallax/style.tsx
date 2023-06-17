@@ -14,6 +14,7 @@ export const ParallaxScrollWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
 `;
 
 export const ParallaxScrollItemWrapper = styled.div<StepParallaxContextProps>`
@@ -30,6 +31,7 @@ export const ParallaxScrollItemWrapper = styled.div<StepParallaxContextProps>`
   transition: ${({ duration, easing }) => `all ${duration / 1000}s ${easing}`};
   transform: ${({ translateX, translateY, rotate }) =>
     `translate(${translateX}px, ${translateY}px) rotate(${rotate}deg)`};
+  z-index: 9999;
 
   &.active {
     opacity: 1;
