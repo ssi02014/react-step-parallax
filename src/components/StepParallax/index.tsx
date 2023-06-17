@@ -68,9 +68,6 @@ const StepParallax = ({
     const scroll = () => {
       const scrollY = window.scrollY;
 
-      console.log(scrollY - boundingTop);
-      console.log(clientHeight * childrenCount + clientHeight);
-
       if (
         scrollY - boundingTop > clientHeight * childrenCount + clientHeight ||
         scrollY < boundingTop
