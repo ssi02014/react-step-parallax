@@ -1,6 +1,6 @@
 {
   "name": "react-step-parallax",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "react-step-parallax",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -72,5 +72,14 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0"
-  }
+  },
+  "keywords": [
+    "react",
+    "next",
+    "react-step-parallax",
+    "parallax",
+    "step",
+    "fullPage",
+    "animation"
+  ]
 }
