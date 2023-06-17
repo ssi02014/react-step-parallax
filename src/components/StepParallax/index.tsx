@@ -12,6 +12,7 @@ export interface StepParallaxProps {
   duration?: number;
   translateX?: number;
   translateY?: number;
+  extra?: React.ReactNode;
   easing?: 'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out';
 }
 
@@ -37,6 +38,7 @@ const StepParallaxContext = createContext<StepParallaxContextProps>({
 
 const StepParallax = ({
   children,
+  extra,
   rotate = 0,
   background = '#fff',
   duration = 500,
@@ -66,8 +68,11 @@ const StepParallax = ({
     const scroll = () => {
       const scrollY = window.scrollY;
 
+      console.log(scrollY - boundingTop);
+      console.log(clientHeight * childrenCount + clientHeight);
+
       if (
-        scrollY - clientHeight > clientHeight * childrenCount + clientHeight ||
+        scrollY - boundingTop > clientHeight * childrenCount + clientHeight ||
         scrollY < boundingTop
       ) {
         scrollWrapper.style.position = 'relative';
@@ -105,6 +110,7 @@ const StepParallax = ({
       <ParallaxMainWrapper ref={mainWrapperRef} background={background}>
         <ParallaxScrollWrapper ref={scrollWrapperRef}>
           {children}
+          {extra}
         </ParallaxScrollWrapper>
       </ParallaxMainWrapper>
     </StepParallaxContext.Provider>
