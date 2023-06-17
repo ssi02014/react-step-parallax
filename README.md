@@ -67,7 +67,7 @@ npm install react-step-parallax
 
 <br />
 
-### STEP 1️⃣
+### STEP 2️⃣
 ```js
 import StepParallax from 'react-step-parallax';
 
@@ -102,5 +102,35 @@ const App = () => {
   )
 }
 ```
+
+<br />
+
+## How to use Next.js(v13) 😊
+### STEP 1️⃣
+- Install library
+```
+yarn add react-step-parallax next-transpile-modules
+or
+npm install react-step-parallax next-transpile-modules
+```
+
+<br />
+
+### STEP 2️⃣
+- Modify next.config
+```js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  transpilePackages: ["react-step-parallax"],
+};
+
+module.exports = nextConfig;
+```
+
+<br />
+
+### STEP 3️⃣
+- the usage is the same as "React.js"
 
 <br />
