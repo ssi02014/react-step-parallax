@@ -1,6 +1,6 @@
 {
   "name": "react-step-parallax",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "react-step-parallax",
   "main": "dist/index.js",
   "module": "dist/index.js",

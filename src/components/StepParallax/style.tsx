@@ -14,7 +14,7 @@ export const ParallaxScrollWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-x: hidden;
+  overflow: hidden;
 `;
 
 export const ParallaxScrollItemWrapper = styled.div<StepParallaxContextProps>`
