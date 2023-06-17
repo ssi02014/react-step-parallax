@@ -20,5 +20,6 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-unnecessary-type-constraint': 'off',
     'import/no-anonymous-default-export': 'off',
+    'react/display-name': 'off',
   },
 };
