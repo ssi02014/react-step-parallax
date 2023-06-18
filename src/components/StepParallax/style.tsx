@@ -1,15 +1,19 @@
 import styled from '@emotion/styled';
 import { StepParallaxContextProps } from '.';
 
-export const ParallaxMainWrapper = styled.div<{ background: string }>`
+export const ParallaxMainWrapper = styled.div<{
+  count: number;
+  background: string;
+}>`
   position: relative;
   width: 100%;
+  height: ${({ count }) => `calc((var(--vh, 1vh) * 100 * ${count + 1}));`};
   background: ${({ background }) => background};
 `;
 
 export const ParallaxScrollWrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: calc((var(--vh, 1vh) * 100));
   top: 0;
   display: flex;
   justify-content: center;
@@ -22,7 +26,7 @@ export const ParallaxScrollItemWrapper = styled.div<StepParallaxContextProps>`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: calc((var(--vh, 1vh) * 100));
   display: flex;
   justify-content: center;
   align-items: center;

@@ -56,20 +56,16 @@ const StepParallax = ({
     const scrollWrapper = scrollWrapperRef.current;
     const clientHeight = scrollWrapper.clientHeight;
     const boundingTop = scrollWrapper.getBoundingClientRect().top;
-    const scrollItems = scrollWrapper.querySelectorAll(
-      '.parallax-scroll-item-wrapper'
-    );
 
-    mainWrapperRef.current.style.height = `${
-      clientHeight * (childrenCount + 1)
-    }px`;
+    const scrollItems = scrollWrapper.querySelectorAll('.parallax-scroll-item');
+
     scrollItems[0].classList.add('active');
 
     const scroll = () => {
       const scrollY = window.scrollY;
 
       if (
-        scrollY - boundingTop > clientHeight * childrenCount + clientHeight ||
+        scrollY - boundingTop > clientHeight * 2 * childrenCount ||
         scrollY < boundingTop
       ) {
         scrollWrapper.style.position = 'relative';
@@ -101,10 +97,18 @@ const StepParallax = ({
     () => window.removeEventListener('scroll', scroll);
   }, []);
 
+  useEffect(() => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }, []);
+
   return (
     <StepParallaxContext.Provider
       value={{ duration, easing, translateX, translateY, rotate }}>
-      <ParallaxMainWrapper ref={mainWrapperRef} background={background}>
+      <ParallaxMainWrapper
+        ref={mainWrapperRef}
+        background={background}
+        count={childrenCount}>
         <ParallaxScrollWrapper ref={scrollWrapperRef}>
           {children}
           {extra}
@@ -120,7 +124,7 @@ StepParallax.Item = ({ children }: StepParallaxItemProps) => {
 
   return (
     <ParallaxScrollItemWrapper
-      className={`parallax-scroll-item-wrapper`}
+      className={`parallax-scroll-item`}
       ref={itemWrapperRef}
       {...context}>
       {children}
