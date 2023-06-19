@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
-import { StepParallaxContextProps } from '.';
+import { FixedStepParallaxContextProps } from '.';
+import { getConvertedImageSize } from '@utils/common';
 
-export const ParallaxMainWrapper = styled.div<{
+export const FixedStepParallaxMainWrapper = styled.div<{
   count: number;
   background: string;
 }>`
@@ -11,7 +12,7 @@ export const ParallaxMainWrapper = styled.div<{
   background: ${({ background }) => background};
 `;
 
-export const ParallaxScrollWrapper = styled.div`
+export const FixedStepParallaxScrollWrapper = styled.div`
   width: 100%;
   height: calc((var(--vh, 1vh) * 100));
   top: 0;
@@ -21,7 +22,7 @@ export const ParallaxScrollWrapper = styled.div`
   overflow: hidden;
 `;
 
-export const ParallaxScrollItemWrapper = styled.div<StepParallaxContextProps>`
+export const FixedStepParallaxItemWrapper = styled.div<FixedStepParallaxContextProps>`
   position: absolute;
   top: 0;
   left: 0;
@@ -33,12 +34,15 @@ export const ParallaxScrollItemWrapper = styled.div<StepParallaxContextProps>`
   flex-direction: column;
   opacity: 0;
   transition: ${({ duration, easing }) => `all ${duration / 1000}s ${easing}`};
-  transform: ${({ translateX, translateY, rotate }) =>
-    `translate(${translateX}px, ${translateY}px) rotate(${rotate}deg)`};
+  transform: ${({ targetX, targetY, rotate }) =>
+    `translate(${getConvertedImageSize(targetX)}, ${getConvertedImageSize(
+      targetY
+    )}) rotate(${rotate}deg)`};
   z-index: 9999;
 
   &.active {
     opacity: 1;
-    transform: translate(0, 0) rotate(0deg);
+    transform: ${({ originX, originY }) =>
+      `translate(${originX}px, ${originY}px) rotate(0deg)`};
   }
 `;

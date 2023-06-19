@@ -3,6 +3,9 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@shared/*": ["src/shared/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@utils/*": ["src/utils/*"],
     },
   }
 }
