@@ -36,9 +36,6 @@
     <img src="https://user-images.githubusercontent.com/64779472/220122236-c90ae4a5-8271-41df-b150-230b97991d41.png" width="120">
   </a>
 </p>
-<p align="center">
-  <a href="https://github.com/ssi02014/react-step-parallax/blob/master/src/stories/components/StepParallax.stories.tsx">Storybook Demo Code</a>
-</p>
 
 <br />
 
@@ -69,34 +66,37 @@ npm install react-step-parallax
 
 ### STEP 2️⃣
 ```js
-import StepParallax from 'react-step-parallax';
+import { FixedStepParallax } from 'react-step-parallax';
 
 const App = () => {
   return (
     <div>
-      <StepParallax
+      <FixedStepParallax
         easing={'ease'} // 'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out'
         duration={500} // number
         background={'#fff'} // css background property (string)
+        originX={0} // number, original position
+        originY={0} // number, original position
+        targetX={100} // number, translate start position
+        targetY={0} // number, translate start position
         translateX={100} // number
         translateY={0} // number
         rotate={0} // number
         extra={/* extra ReactNode(Required position: absolute) */}
       >
-        <StepParallax.Item>
+        <FixedStepParallax.Item>
           {/* STEP1 ReactNode */}
-        </StepParallax.Item>
-        <StepParallax.Item>
+        </FixedStepParallax.Item>
+        <FixedStepParallax.Item>
           {/* STEP2 ReactNode */}
-        </StepParallax.Item>
-        <StepParallax.Item>
+        </FixedStepParallax.Item>
+        <FixedStepParallax.Item>
           {/* STEP3 ReactNode */}
-        </StepParallax.Item>
-        <StepParallax.Item>
+        </FixedStepParallax.Item>
+        <FixedStepParallax.Item>
           {/* STEP4 ReactNode */}
-        </StepParallax.Item>
-      </StepParallax>
-
+        </FixedStepParallax.Item>
+      </FixedStepParallax>
       {/* ... */}
     </div>
   )

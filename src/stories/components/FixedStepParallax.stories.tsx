@@ -1,9 +1,11 @@
 import React from 'react';
 import { StoryFn } from '@storybook/react';
-import StepParallax, { StepParallaxProps } from '@components/StepParallax';
+import FixedStepParallax, {
+  FixedStepParallaxProps,
+} from '@components/FixedStepParallax';
 
 export default {
-  title: 'components/StepParallax',
+  title: 'components/FixedStepParallax',
   argTypes: {
     easing: {
       options: ['linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out'],
@@ -12,7 +14,7 @@ export default {
   },
 };
 
-const Template: StoryFn<StepParallaxProps> = ({ ...args }) => {
+const Template: StoryFn<FixedStepParallaxProps> = ({ ...args }) => {
   return (
     <div>
       <div
@@ -27,50 +29,52 @@ const Template: StoryFn<StepParallaxProps> = ({ ...args }) => {
         }}>
         <h2>EMPTY SPACE1</h2>
       </div>
-      <StepParallax
+      <FixedStepParallax
         easing={args.easing}
         duration={args.duration}
         background={args.background}
-        translateX={args.translateX}
-        translateY={args.translateY}
+        originX={args.originX}
+        originY={args.originY}
+        targetX={args.targetX}
+        targetY={args.targetY}
         rotate={args.rotate}
         extra={args.extra}>
-        <StepParallax.Item>
+        <FixedStepParallax.Item>
           <h2 style={{ fontSize: '32px', textAlign: 'center' }}>
-            React FullPage Step Parallax
+            React FullScreen Step Parallax
           </h2>
           <h3>Step1</h3>
           <button>Start</button>
-        </StepParallax.Item>
-        <StepParallax.Item>
+        </FixedStepParallax.Item>
+        <FixedStepParallax.Item>
           <h2 style={{ fontSize: '32px', textAlign: 'center' }}>
-            React FullPage Step Parallax
+            React FullScreen Step Parallax
           </h2>
           <h3>Step2</h3>
           <button>Start</button>
-        </StepParallax.Item>
-        <StepParallax.Item>
+        </FixedStepParallax.Item>
+        <FixedStepParallax.Item>
           <h2 style={{ fontSize: '32px', textAlign: 'center' }}>
-            React FullPage Step Parallax
+            React FullScreen Step Parallax
           </h2>
           <h3>Step3</h3>
           <button>Start</button>
-        </StepParallax.Item>
-        <StepParallax.Item>
+        </FixedStepParallax.Item>
+        <FixedStepParallax.Item>
           <h2 style={{ fontSize: '32px', textAlign: 'center' }}>
-            React FullPage Step Parallax
+            React FullScreen Step Parallax
           </h2>
           <h3>Step4</h3>
           <button>Start</button>
-        </StepParallax.Item>
-        <StepParallax.Item>
+        </FixedStepParallax.Item>
+        <FixedStepParallax.Item>
           <h2 style={{ fontSize: '32px', textAlign: 'center' }}>
-            React FullPage Step Parallax
+            React FullScreen Step Parallax
           </h2>
           <h3>Step5</h3>
           <button>Start</button>
-        </StepParallax.Item>
-      </StepParallax>
+        </FixedStepParallax.Item>
+      </FixedStepParallax>
 
       <div
         style={{
@@ -95,27 +99,27 @@ export const Default = {
     background: '#fff',
     rotate: 0,
     duration: 500,
-    translateX: 100,
-    translateY: 0,
+    originX: 0,
+    originY: 0,
+    targetX: 100,
+    targetY: 0,
     easing: 'ease',
     extra: (
-      <>
-        <div
-          style={{
-            width: '80px',
-            height: '80px',
-            position: 'absolute',
-            backgroundColor: '#3178d4',
-            bottom: '10%',
-            left: '10%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            color: '#fff',
-          }}>
-          Extra Div1!!
-        </div>
-      </>
+      <div
+        style={{
+          width: '80px',
+          height: '80px',
+          position: 'absolute',
+          backgroundColor: '#3178d4',
+          bottom: '10%',
+          left: '10%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          color: '#fff',
+        }}>
+        Extra Div1!!
+      </div>
     ),
   },
 };

@@ -1,3 +1,2 @@
-import StepParallax from '@components/StepParallax';
-
-export default StepParallax;
+export { default as FixedStepParallax } from '@components/FixedStepParallax';
+export { default as FlyInItemParallax } from '@components/FlyInItemParallax';
