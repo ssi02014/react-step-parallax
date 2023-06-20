@@ -58,7 +58,7 @@ import { FixedStepParallax } from 'react-step-parallax';
 const App = () => {
   return (
     <div>
-      {/* Parallax public setting */}
+      {/* Parallax Common Setting */}
       <FixedStepParallax
         background={'#fff'} // css background property (string)
         startX={100} // number(px), start position
