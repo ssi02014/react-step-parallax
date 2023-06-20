@@ -34,15 +34,15 @@ export const FixedStepParallaxItemWrapper = styled.div<FixedStepParallaxContextP
   flex-direction: column;
   opacity: 0;
   transition: ${({ duration, easing }) => `all ${duration / 1000}s ${easing}`};
-  transform: ${({ targetX, targetY, rotate }) =>
-    `translate(${getConvertedImageSize(targetX)}, ${getConvertedImageSize(
-      targetY
+  transform: ${({ startX, startY, rotate }) =>
+    `translate(${getConvertedImageSize(startX)}, ${getConvertedImageSize(
+      startY
     )}) rotate(${rotate}deg)`};
   z-index: 9999;
 
   &.active {
     opacity: 1;
-    transform: ${({ originX, originY }) =>
-      `translate(${originX}px, ${originY}px) rotate(0deg)`};
+    transform: ${({ endX, endY }) =>
+      `translate(${endX}px, ${endY}px) rotate(0deg)`};
   }
 `;

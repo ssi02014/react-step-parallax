@@ -68,8 +68,8 @@ const Template: StoryFn<FlyInItemParallaxProps> = ({ ...args }) => {
         <h2>EMPTY SPACE1</h2>
       </div>
       <FlyInItemParallax
-        targetY={args.targetY}
-        targetX={args.targetX}
+        startY={args.startY}
+        startX={args.startX}
         gap={args.gap}
         rotate={args.rotate}
         duration={args.duration}
@@ -135,9 +135,9 @@ export const Default = {
     delay: 100,
     background: '#fff',
     duration: 300,
-    rotate: 30,
-    targetX: 0,
-    targetY: 100,
+    rotate: 0,
+    startX: 0,
+    startY: 100,
     gap: 0,
     threshold: 0.3,
     justify: 'center',

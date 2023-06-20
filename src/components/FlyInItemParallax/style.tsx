@@ -45,9 +45,9 @@ export const FlyInItemWrapper = styled.div<
   transition: ${({ duration, easing, delay, idx }) =>
     `all ${duration / 1000}s ${easing} ${(delay / 1000) * idx}s`};
 
-  transform: ${({ targetX, targetY, rotate }) =>
-    `translate(${getConvertedImageSize(targetX)}, ${getConvertedImageSize(
-      targetY
+  transform: ${({ startX, startY, rotate }) =>
+    `translate(${getConvertedImageSize(startX)}, ${getConvertedImageSize(
+      startY
     )}) rotate(${rotate}deg)`};
 
   &.active {
