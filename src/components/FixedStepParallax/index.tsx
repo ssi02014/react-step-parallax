@@ -11,20 +11,20 @@ export interface FixedStepParallaxProps {
   rotate?: number;
   background?: string;
   duration?: number;
-  originX?: number;
-  originY?: number;
-  targetX?: number;
-  targetY?: number;
+  endX?: number;
+  endY?: number;
+  startX?: number;
+  startY?: number;
   extra?: React.ReactNode;
   easing?: Easing;
 }
 
 export interface FixedStepParallaxContextProps {
   duration: number;
-  originX: number;
-  originY: number;
-  targetX: number;
-  targetY: number;
+  endX: number;
+  endY: number;
+  startX: number;
+  startY: number;
   rotate: number;
   easing: Easing;
 }
@@ -34,10 +34,10 @@ export interface FixedStepParallaxItemProps {
 }
 
 const FixedStepParallaxContext = createContext<FixedStepParallaxContextProps>({
-  targetX: 0,
-  targetY: 0,
-  originX: 0,
-  originY: 0,
+  startX: 0,
+  startY: 0,
+  endX: 0,
+  endY: 0,
   rotate: 0,
   duration: 0.5,
   easing: 'ease',
@@ -49,10 +49,10 @@ const FixedStepParallax = ({
   rotate = 0,
   background = '#fff',
   duration = 500,
-  originX = 0,
-  originY = 0,
-  targetX = 0,
-  targetY = 0,
+  endX = 0,
+  endY = 0,
+  startX = 0,
+  startY = 0,
   easing = 'ease',
 }: FixedStepParallaxProps) => {
   const mainWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -119,7 +119,7 @@ const FixedStepParallax = ({
 
   return (
     <FixedStepParallaxContext.Provider
-      value={{ duration, easing, targetX, targetY, rotate, originX, originY }}>
+      value={{ duration, easing, startX, startY, rotate, endX, endY }}>
       <FixedStepParallaxMainWrapper
         ref={mainWrapperRef}
         background={background}

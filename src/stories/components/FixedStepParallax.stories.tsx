@@ -33,10 +33,10 @@ const Template: StoryFn<FixedStepParallaxProps> = ({ ...args }) => {
         easing={args.easing}
         duration={args.duration}
         background={args.background}
-        originX={args.originX}
-        originY={args.originY}
-        targetX={args.targetX}
-        targetY={args.targetY}
+        endX={args.endX}
+        endY={args.endY}
+        startX={args.startX}
+        startY={args.startY}
         rotate={args.rotate}
         extra={args.extra}>
         <FixedStepParallax.Item>
@@ -99,10 +99,10 @@ export const Default = {
     background: '#fff',
     rotate: 0,
     duration: 500,
-    originX: 0,
-    originY: 0,
-    targetX: 100,
-    targetY: 0,
+    endX: 0,
+    endY: 0,
+    startX: 100,
+    startY: 0,
     easing: 'ease',
     extra: (
       <div

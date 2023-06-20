@@ -17,8 +17,8 @@ export interface FlyInItemParallaxProps {
   background?: string;
   duration?: number;
   delay?: number;
-  targetX?: number;
-  targetY?: number;
+  startX?: number;
+  startY?: number;
   threshold?: number;
   gap?: number;
   easing?: Easing;
@@ -27,8 +27,8 @@ export interface FlyInItemParallaxProps {
 
 export interface FlyInItemParallaxContextProps {
   duration: number;
-  targetX: number;
-  targetY: number;
+  startX: number;
+  startY: number;
   delay: number;
   rotate: number;
   easing: Easing;
@@ -40,8 +40,8 @@ export interface FlyInItemParallaxItemProps {
 }
 
 const FlyInItemParallaxContext = createContext<FlyInItemParallaxContextProps>({
-  targetX: 0,
-  targetY: 100,
+  startX: 0,
+  startY: 100,
   rotate: 0,
   duration: 300,
   delay: 100,
@@ -56,8 +56,8 @@ const FlyInItemParallax = ({
   background = '#fff',
   duration = 300,
   rotate = 0,
-  targetX = 0,
-  targetY = 100,
+  startX = 0,
+  startY = 100,
   gap = 0,
   threshold = 0.3,
   justify = 'center',
@@ -100,7 +100,7 @@ const FlyInItemParallax = ({
 
   return (
     <FlyInItemParallaxContext.Provider
-      value={{ delay, rotate, duration, targetX, targetY, easing }}>
+      value={{ delay, rotate, duration, startX, startY, easing }}>
       <FlyInItemParallaxMainWrapper
         screenHeight={screenHeight}
         background={background}

@@ -30,25 +30,11 @@
 <br />
 
 <h3 align="center">Storybook Demo Page</h3>
-<h5 align="center">Click Icon</h5>
+<h5 align="center">Click Icon ⬇️</h5>
 <p align="center">
   <a href="https://ssi02014.github.io/react-step-parallax">
     <img src="https://user-images.githubusercontent.com/64779472/220122236-c90ae4a5-8271-41df-b150-230b97991d41.png" width="120">
   </a>
-</p>
-
-<br />
-
-## Desktop Video 📷
-<p align='center'>
-  <img width="450" src="https://github.com/ssi02014/react-step-parallax/assets/64779472/91268e36-09b4-4e75-9f1a-386474909fac">
-</p>
-
-<br />
-
-## Mobile Video 📷
-<p align='center'>
-  <img width="450" src="https://github.com/ssi02014/react-step-parallax/assets/64779472/1628f06e-a3f8-4068-9497-cfe61112c8d0">
 </p>
 
 <br />
@@ -75,12 +61,10 @@ const App = () => {
         easing={'ease'} // 'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out'
         duration={500} // number
         background={'#fff'} // css background property (string)
-        originX={0} // number, original position
-        originY={0} // number, original position
-        targetX={100} // number, translate start position
-        targetY={0} // number, translate start position
-        translateX={100} // number
-        translateY={0} // number
+        startX={100} // number, start position
+        startY={0} // number, start position
+        endX={0} // number, end position
+        endY={0} // number, end position
         rotate={0} // number
         extra={/* extra ReactNode(Required position: absolute) */}
       >
