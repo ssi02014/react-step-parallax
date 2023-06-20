@@ -31,6 +31,13 @@ export interface FixedStepParallaxContextProps {
 
 export interface FixedStepParallaxItemProps {
   children: React.ReactNode;
+  rotate?: number;
+  endX?: number;
+  endY?: number;
+  startX?: number;
+  startY?: number;
+  easing?: Easing;
+  duration?: number;
 }
 
 const FixedStepParallaxContext = createContext<FixedStepParallaxContextProps>({
@@ -46,9 +53,9 @@ const FixedStepParallaxContext = createContext<FixedStepParallaxContextProps>({
 const FixedStepParallax = ({
   children,
   extra,
-  rotate = 0,
   background = '#fff',
   duration = 500,
+  rotate = 0,
   endX = 0,
   endY = 0,
   startX = 0,
@@ -133,13 +140,31 @@ const FixedStepParallax = ({
   );
 };
 
-FixedStepParallax.Item = ({ children }: FixedStepParallaxItemProps) => {
+FixedStepParallax.Item = ({
+  children,
+  endX,
+  endY,
+  startX,
+  startY,
+  rotate,
+  easing,
+  duration,
+}: FixedStepParallaxItemProps) => {
   const context = useContext(FixedStepParallaxContext);
+  const overridingContextProps = {
+    endX: endX ?? context.endX,
+    endY: endY ?? context.endY,
+    startX: startX ?? context.startX,
+    startY: startY ?? context.startY,
+    rotate: rotate ?? context.rotate,
+    easing: easing ?? context.easing,
+    duration: duration ?? context.duration,
+  };
 
   return (
     <FixedStepParallaxItemWrapper
       className={'fixed-step-parallax-item'}
-      {...context}>
+      {...overridingContextProps}>
       {children}
     </FixedStepParallaxItemWrapper>
   );
