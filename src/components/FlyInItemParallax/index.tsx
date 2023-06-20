@@ -9,7 +9,7 @@ import { Align, Easing, FlexWrap, Justify } from '@interfaces/style';
 export interface FlyInItemParallaxProps {
   children: React.ReactNode;
   extra?: React.ReactNode;
-  screenHeight?: string | number;
+  screenHeight?: number;
   direction?: 'column' | 'row';
   justify?: Justify;
   align?: Align;
@@ -37,6 +37,12 @@ export interface FlyInItemParallaxContextProps {
 export interface FlyInItemParallaxItemProps {
   children: React.ReactNode;
   idx?: number;
+  duration?: number;
+  startX?: number;
+  startY?: number;
+  easing?: Easing;
+  delay?: number;
+  rotate?: number;
 }
 
 const FlyInItemParallaxContext = createContext<FlyInItemParallaxContextProps>({
@@ -126,12 +132,29 @@ const FlyInItemParallax = ({
 
 FlyInItemParallax.Item = ({
   children,
+  startX,
+  startY,
+  easing,
+  duration,
+  delay,
+  rotate,
   idx = 0,
 }: FlyInItemParallaxItemProps) => {
   const context = useContext(FlyInItemParallaxContext);
+  const overridingContextProps = {
+    startX: startX ?? context.startX,
+    startY: startY ?? context.startY,
+    duration: duration ?? context.duration,
+    easing: easing ?? context.easing,
+    delay: delay ?? context.delay,
+    rotate: rotate ?? context.rotate,
+  };
 
   return (
-    <FlyInItemWrapper className={'fly-in-parallax-item'} idx={idx} {...context}>
+    <FlyInItemWrapper
+      className={'fly-in-parallax-item'}
+      idx={idx}
+      {...overridingContextProps}>
       {children}
     </FlyInItemWrapper>
   );

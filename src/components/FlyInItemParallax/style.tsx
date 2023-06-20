@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { FlyInItemParallaxContextProps } from '.';
 import { Align, FlexWrap, Justify } from '@interfaces/style';
-import { getConvertedImageSize } from '@utils/common';
+import { getConvertedCssSize } from '@utils/common';
 
 export const FlyInItemParallaxMainWrapper = styled.div<{
   background: string;
@@ -14,7 +14,7 @@ export const FlyInItemParallaxMainWrapper = styled.div<{
   width: 100%;
   height: ${({ screenHeight }) =>
     screenHeight
-      ? getConvertedImageSize(screenHeight)
+      ? getConvertedCssSize(screenHeight)
       : `calc((var(--vh, 1vh) * 100))`};
   background: ${({ background }) => background};
 `;
@@ -46,9 +46,7 @@ export const FlyInItemWrapper = styled.div<
     `all ${duration / 1000}s ${easing} ${(delay / 1000) * idx}s`};
 
   transform: ${({ startX, startY, rotate }) =>
-    `translate(${getConvertedImageSize(startX)}, ${getConvertedImageSize(
-      startY
-    )}) rotate(${rotate}deg)`};
+    `translate(${startX}px, ${startY}px) rotate(${rotate}deg)`};
 
   &.active {
     opacity: 1;

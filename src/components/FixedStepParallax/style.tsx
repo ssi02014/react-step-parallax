@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { FixedStepParallaxContextProps } from '.';
-import { getConvertedImageSize } from '@utils/common';
 
 export const FixedStepParallaxMainWrapper = styled.div<{
   count: number;
@@ -35,9 +34,7 @@ export const FixedStepParallaxItemWrapper = styled.div<FixedStepParallaxContextP
   opacity: 0;
   transition: ${({ duration, easing }) => `all ${duration / 1000}s ${easing}`};
   transform: ${({ startX, startY, rotate }) =>
-    `translate(${getConvertedImageSize(startX)}, ${getConvertedImageSize(
-      startY
-    )}) rotate(${rotate}deg)`};
+    `translate(${startX}px, ${startY}px) rotate(${rotate}deg)`};
   z-index: 9999;
 
   &.active {

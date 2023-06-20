@@ -43,35 +43,35 @@ const Template: StoryFn<FixedStepParallaxProps> = ({ ...args }) => {
           <h2 style={{ fontSize: '32px', textAlign: 'center' }}>
             React FullScreen Step Parallax
           </h2>
-          <h3>Step1</h3>
+          <h3>Default Step1</h3>
+          <button>Start</button>
+        </FixedStepParallax.Item>
+        <FixedStepParallax.Item startX={0} startY={100}>
+          <h2 style={{ fontSize: '32px', textAlign: 'center' }}>
+            React FullScreen Step Parallax
+          </h2>
+          <h3>Overriding(startX: 0, startY: 100) Step2</h3>
+          <button>Start</button>
+        </FixedStepParallax.Item>
+        <FixedStepParallax.Item startX={-100}>
+          <h2 style={{ fontSize: '32px', textAlign: 'center' }}>
+            React FullScreen Step Parallax
+          </h2>
+          <h3>Overriding(startX: -100) Step3</h3>
           <button>Start</button>
         </FixedStepParallax.Item>
         <FixedStepParallax.Item>
           <h2 style={{ fontSize: '32px', textAlign: 'center' }}>
             React FullScreen Step Parallax
           </h2>
-          <h3>Step2</h3>
+          <h3>Default Step4</h3>
           <button>Start</button>
         </FixedStepParallax.Item>
         <FixedStepParallax.Item>
           <h2 style={{ fontSize: '32px', textAlign: 'center' }}>
             React FullScreen Step Parallax
           </h2>
-          <h3>Step3</h3>
-          <button>Start</button>
-        </FixedStepParallax.Item>
-        <FixedStepParallax.Item>
-          <h2 style={{ fontSize: '32px', textAlign: 'center' }}>
-            React FullScreen Step Parallax
-          </h2>
-          <h3>Step4</h3>
-          <button>Start</button>
-        </FixedStepParallax.Item>
-        <FixedStepParallax.Item>
-          <h2 style={{ fontSize: '32px', textAlign: 'center' }}>
-            React FullScreen Step Parallax
-          </h2>
-          <h3>Step5</h3>
+          <h3>Default Step5</h3>
           <button>Start</button>
         </FixedStepParallax.Item>
       </FixedStepParallax>

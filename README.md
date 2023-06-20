@@ -1,4 +1,5 @@
 # 💻 React Step Parallax
+### 내가 쉽게 활용하려고 만든 Parallax 컴포넌트 💪
 
 <br />
 
@@ -57,18 +58,28 @@ import { FixedStepParallax } from 'react-step-parallax';
 const App = () => {
   return (
     <div>
+      {/* Parallax public setting */}
       <FixedStepParallax
-        easing={'ease'} // 'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out'
-        duration={500} // number
         background={'#fff'} // css background property (string)
-        startX={100} // number, start position
-        startY={0} // number, start position
-        endX={0} // number, end position
-        endY={0} // number, end position
-        rotate={0} // number
+        startX={100} // number(px), start position
+        startY={0} // number(px), start position
+        endX={0} // number(px), end position
+        endY={0} // number(px), end position
+        rotate={0} // number(deg)
+        easing={'ease'} // 'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out'
+        duration={500} // number (millisecond 500 -> 0.5)
         extra={/* extra ReactNode(Required position: absolute) */}
       >
-        <FixedStepParallax.Item>
+        <FixedStepParallax.Item
+          // Each Item Props Overriding
+          startX={200} 
+          startY={-200}
+          endX={100} 
+          endY={100}
+          rotate={30}
+          easing={'ease-in'} 
+          duration={300} 
+        >
           {/* STEP1 ReactNode */}
         </FixedStepParallax.Item>
         <FixedStepParallax.Item>

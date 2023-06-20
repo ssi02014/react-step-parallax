@@ -88,10 +88,16 @@ const Template: StoryFn<FlyInItemParallaxProps> = ({ ...args }) => {
             <p>Description</p>
           </Box>
         </FlyInItemParallax.Item>
-        <FlyInItemParallax.Item>
+        <FlyInItemParallax.Item rotate={30}>
           <Box>
             <h3>Item1</h3>
-            <p>Description</p>
+            <p>Overriding(Rotate: 30)</p>
+          </Box>
+        </FlyInItemParallax.Item>
+        <FlyInItemParallax.Item startY={-100}>
+          <Box>
+            <h3>Item1</h3>
+            <p>Overriding(startY: -100)</p>
           </Box>
         </FlyInItemParallax.Item>
         <FlyInItemParallax.Item>
@@ -124,21 +130,23 @@ const Template: StoryFn<FlyInItemParallaxProps> = ({ ...args }) => {
 };
 
 const Box = styled.div`
-  padding: 20px;
+  padding: 30px 40px;
+  background-color: #bf5f5f;
+  color: #fff;
 `;
 
 export const Default = {
   render: Template,
 
   args: {
-    screenHeight: null,
+    screenHeight: 0,
     delay: 100,
     background: '#fff',
     duration: 300,
     rotate: 0,
     startX: 0,
     startY: 100,
-    gap: 0,
+    gap: 10,
     threshold: 0.3,
     justify: 'center',
     align: 'center',
