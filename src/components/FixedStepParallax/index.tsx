@@ -5,6 +5,8 @@ import {
   FixedStepParallaxScrollWrapper,
 } from './style';
 import { Easing } from '@interfaces/style';
+import useIOSVh from '@hooks/useIOSVh';
+import useSearchParallaxItems from '@hooks/useSearchParallaxItems';
 
 export interface FixedStepParallaxProps {
   children: React.ReactNode;
@@ -62,26 +64,32 @@ const FixedStepParallax = ({
   startY = 0,
   easing = 'ease',
 }: FixedStepParallaxProps) => {
-  const mainWrapperRef = useRef<HTMLDivElement | null>(null);
   const scrollWrapperRef = useRef<HTMLDivElement | null>(null);
   const childrenCount = React.Children.count(children);
 
+  const parallaxItems = useSearchParallaxItems(
+    scrollWrapperRef,
+    '.fixed-step-parallax-item'
+  );
+  useIOSVh();
+
+  const getIsCorrectChildren = (elements: Element[]) => {
+    if (elements.length > 0 && childrenCount !== elements.length) {
+      throw new Error('Add only FlyInItemParallax.Item to Children.');
+    }
+  };
+
   useEffect(() => {
-    if (!scrollWrapperRef.current || !mainWrapperRef.current) return;
+    if (!scrollWrapperRef.current) return;
+    if (!parallaxItems.length) return;
 
     const scrollWrapper = scrollWrapperRef.current;
     const clientHeight = scrollWrapper.clientHeight;
     const boundingTop = scrollWrapper.getBoundingClientRect().top;
 
-    const fixedStepParallaxItems = scrollWrapper.querySelectorAll(
-      '.fixed-step-parallax-item'
-    );
+    getIsCorrectChildren(parallaxItems);
 
-    if (childrenCount !== fixedStepParallaxItems.length) {
-      throw new Error('Add only  FixedStepParallax.Item to Children.');
-    }
-
-    fixedStepParallaxItems[0].classList.add('active');
+    parallaxItems[0].classList.add('active');
 
     const scroll = () => {
       const scrollY = window.scrollY;
@@ -95,21 +103,21 @@ const FixedStepParallax = ({
         scrollWrapper.style.position = 'sticky';
       }
 
-      fixedStepParallaxItems.forEach((_, idx) => {
+      parallaxItems.forEach((_, idx) => {
         if (
           scrollY - boundingTop >= clientHeight * idx &&
           scrollY - boundingTop < clientHeight * (idx + 1)
         ) {
           if (!idx) {
-            fixedStepParallaxItems[idx].classList.add('active');
-            fixedStepParallaxItems[idx + 1].classList.remove('active');
+            parallaxItems[idx].classList.add('active');
+            parallaxItems[idx + 1].classList.remove('active');
           } else if (idx === childrenCount - 1) {
-            fixedStepParallaxItems[idx].classList.add('active');
-            fixedStepParallaxItems[idx - 1].classList.remove('active');
+            parallaxItems[idx].classList.add('active');
+            parallaxItems[idx - 1].classList.remove('active');
           } else {
-            fixedStepParallaxItems[idx].classList.add('active');
-            fixedStepParallaxItems[idx + 1].classList.remove('active');
-            fixedStepParallaxItems[idx - 1].classList.remove('active');
+            parallaxItems[idx].classList.add('active');
+            parallaxItems[idx + 1].classList.remove('active');
+            parallaxItems[idx - 1].classList.remove('active');
           }
         }
       });
@@ -117,18 +125,12 @@ const FixedStepParallax = ({
 
     window.addEventListener('scroll', scroll);
     () => window.removeEventListener('scroll', scroll);
-  }, []);
-
-  useEffect(() => {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  }, []);
+  }, [parallaxItems]);
 
   return (
     <FixedStepParallaxContext.Provider
       value={{ duration, easing, startX, startY, rotate, endX, endY }}>
       <FixedStepParallaxMainWrapper
-        ref={mainWrapperRef}
         background={background}
         count={childrenCount}>
         <FixedStepParallaxScrollWrapper ref={scrollWrapperRef}>

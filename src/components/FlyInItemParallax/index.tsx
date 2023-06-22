@@ -5,6 +5,8 @@ import {
   FlyInItemWrapper,
 } from './style';
 import { Align, Easing, FlexWrap, Justify } from '@interfaces/style';
+import useSearchParallaxItems from '@hooks/useSearchParallaxItems';
+import useIOSVh from '@hooks/useIOSVh';
 
 export interface FlyInItemParallaxProps {
   children: React.ReactNode;
@@ -75,21 +77,31 @@ const FlyInItemParallax = ({
   const mainWrapperRef = useRef<HTMLDivElement | null>(null);
   const childrenCount = React.Children.count(children);
 
-  useEffect(() => {
-    if (!mainWrapperRef.current) return;
+  const parallaxItems = useSearchParallaxItems(
+    mainWrapperRef,
+    '.fly-in-parallax-item'
+  );
+  useIOSVh();
 
-    const mainWrapper = mainWrapperRef.current;
-    const flyInItems = mainWrapper.querySelectorAll('.fly-in-parallax-item');
-
-    if (childrenCount !== flyInItems.length) {
+  const getIsCorrectChildren = (elements: Element[]) => {
+    if (elements.length > 0 && childrenCount !== elements.length) {
       throw new Error('Add only FlyInItemParallax.Item to Children.');
     }
+  };
 
-    const onIntersect = ([entry]: IntersectionObserverEntry[]) => {
-      flyInItems.forEach((item) => {
-        item.classList.toggle('active', entry.isIntersecting);
-      });
-    };
+  const onIntersect = ([entry]: IntersectionObserverEntry[]) => {
+    parallaxItems.forEach((item) => {
+      item.classList.toggle('active', entry.isIntersecting);
+    });
+  };
+
+  useEffect(() => {
+    if (!mainWrapperRef.current) return;
+    if (!parallaxItems.length) return;
+
+    const mainWrapper = mainWrapperRef.current;
+
+    getIsCorrectChildren(parallaxItems);
 
     const observer = new IntersectionObserver(onIntersect, {
       threshold,
@@ -97,12 +109,7 @@ const FlyInItemParallax = ({
 
     observer.observe(mainWrapper);
     return () => observer.unobserve(mainWrapper);
-  }, []);
-
-  useEffect(() => {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  }, []);
+  }, [parallaxItems]);
 
   return (
     <FlyInItemParallaxContext.Provider
